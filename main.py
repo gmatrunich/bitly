@@ -6,6 +6,8 @@ load_dotenv()
 
 TOKEN = os.getenv("BITLY_TOKEN")
 ENTRY_URL = 'https://api-ssl.bitly.com/v4/bitlinks'
+DESCRIPTION_TEXT = 'Сокращение ссылок с помощью сервиса bit.ly и вывод статистики по переходам'
+HELP_TEXT = 'Введите ссылку для сокращения или bitly-ссылку для просмотра количества переходов.'
 
 
 def make_headers(token):
@@ -41,8 +43,8 @@ def remove_http_symbols(short_link):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Сокращение ссылок с помощью сервиса bit.ly и вывод статистики по переходам')
-    parser.add_argument('url', help='Введите ссылку для сокращения или bitly-ссылку для просмотра количества переходов.')
+    parser = argparse.ArgumentParser(description=DESCRIPTION_TEXT)
+    parser.add_argument('url', help=HELP_TEXT)
     args = parser.parse_args()
 
     try:
