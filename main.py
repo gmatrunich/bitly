@@ -3,7 +3,6 @@ import os
 import argparse
 from dotenv import load_dotenv
 
-#TOKEN = os.getenv("BITLY_TOKEN")
 ENTRY_URL = 'https://api-ssl.bitly.com/v4/bitlinks'
 DESCRIPTION_TEXT = 'Сокращение ссылок с помощью сервиса bit.ly и вывод статистики по переходам'
 HELP_TEXT = 'Введите ссылку для сокращения или bitly-ссылку для просмотра количества переходов.'
