@@ -2,9 +2,8 @@ import requests
 import os
 import argparse
 from dotenv import load_dotenv
-load_dotenv()
 
-TOKEN = os.getenv("BITLY_TOKEN")
+#TOKEN = os.getenv("BITLY_TOKEN")
 ENTRY_URL = 'https://api-ssl.bitly.com/v4/bitlinks'
 DESCRIPTION_TEXT = 'Сокращение ссылок с помощью сервиса bit.ly и вывод статистики по переходам'
 HELP_TEXT = 'Введите ссылку для сокращения или bitly-ссылку для просмотра количества переходов.'
@@ -43,6 +42,7 @@ def remove_http_symbols(short_link):
 
 
 if __name__ == "__main__":
+    load_dotenv()
     parser = argparse.ArgumentParser(description=DESCRIPTION_TEXT)
     parser.add_argument('url', help=HELP_TEXT)
     args = parser.parse_args()
@@ -50,8 +50,8 @@ if __name__ == "__main__":
     try:
         url = args.url
         if url.startswith('http://bit.ly') or url.startswith('https://bit.ly'):
-            print('Количество переходов:', count_clicks(TOKEN, remove_http_symbols(url)))
+            print('Количество переходов:', count_clicks(os.getenv("BITLY_TOKEN"), remove_http_symbols(url)))
         else:
-            print('Битлинк', shorten_link(TOKEN, url))
+            print('Битлинк', shorten_link(os.getenv("BITLY_TOKEN"), url))
     except requests.exceptions.HTTPError:
         print('Ошибка: Неверная ссылка.')
